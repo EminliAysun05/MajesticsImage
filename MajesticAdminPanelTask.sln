@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35222.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MajesticAdminPanelTask", "MajesticAdminPanelTask.csproj", "{F0EE5B80-6DB0-43CF-9E62-F0DAFBC97321}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F0EE5B80-6DB0-43CF-9E62-F0DAFBC97321}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0EE5B80-6DB0-43CF-9E62-F0DAFBC97321}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0EE5B80-6DB0-43CF-9E62-F0DAFBC97321}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0EE5B80-6DB0-43CF-9E62-F0DAFBC97321}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9470E05C-3ACA-4864-B4F5-C8DAEDC04976}
+	EndGlobalSection
+EndGlobal

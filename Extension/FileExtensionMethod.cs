@@ -1,0 +1,35 @@
+﻿using Microsoft.AspNetCore.Hosting;
+using PB303Fashion.DataAccessLayer.Entities;
+
+namespace MajesticAdminPanelTask.Extension
+{
+    public static class FileExtensionMethod
+    {
+        public static bool IsImage(this IFormFile file)
+        {
+            return file.ContentType.Contains("image");
+        }
+        
+        public static bool IsAllowedSize(this IFormFile file,int mb)
+        {
+            return file.Length <= mb * 1024 * 1024;
+        }
+
+        public static async Task<string> GenerateFileAsync(this IFormFile file, string path)
+        {
+            var imageName = $"{Guid.NewGuid()}-{file.FileName}";
+            //bu wwwrootu verir
+            //var rootPath = _webHostEnvironment.WebRootPath;
+            path = Path.Combine(path, imageName);
+
+            //var fs = new FileStream(path, FileMode.Create);
+            //await file.CopyToAsync(fs);//filein baytlarini yazir ora
+            //fs.Close();
+            using (var fs = new FileStream(path, FileMode.Create))
+            {
+                await file.CopyToAsync(fs); // Faylın baytlarını yazır ora
+            }
+            return imageName;
+        }
+    }
+}
