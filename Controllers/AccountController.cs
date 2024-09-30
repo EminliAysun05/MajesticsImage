@@ -138,7 +138,7 @@ namespace MajesticAdminPanelTask.Controllers
         {
             if (ModelState.IsValid)
             {
-             
+
                 if (string.IsNullOrEmpty(model.Email))
                 {
 
@@ -161,11 +161,9 @@ namespace MajesticAdminPanelTask.Controllers
                 //  return RedirectToAction(nameof(ResetPassword));
                 //return View(nameof(EmailView), resetLink);
 
-                var check = model;
-                var check1 = resetLink;
-                 _emailSender.SendEmail(model.Email, "Reset Password", $"Click <a href='{resetLink}'>here</a> to reset your password.");
+                _emailSender.SendEmail(model.Email, "Reset Password", $"Click <a href='{resetLink}'>here</a> to reset your password.");
 
-                return View("EmailView");
+                return View("Login");
             }
             return View(model);
         }
@@ -175,14 +173,20 @@ namespace MajesticAdminPanelTask.Controllers
         {
             return View();
         }
-      
 
+        public IActionResult ResetPassword(string email,string resetToken)
+        {
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(resetToken))
+                return BadRequest();
+
+            return View();
+        }
         [HttpPost]
         [AutoValidateAntiforgeryToken]
 
         public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model, string email, string resetToken)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View();
             }
@@ -193,7 +197,16 @@ namespace MajesticAdminPanelTask.Controllers
 
             var result = await _userManager.ResetPasswordAsync(existUser, resetToken, model.Password);
 
-       
+
+            if (!result.Succeeded)
+            {
+                foreach (var err in result.Errors)
+                {
+                    ModelState.AddModelError("", err.Description);
+                }
+                return View();
+            }
+
 
             return RedirectToAction(nameof(Login));
         }
