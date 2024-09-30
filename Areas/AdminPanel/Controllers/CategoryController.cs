@@ -18,6 +18,7 @@ public class CategoryController : Controller
         _webHostEnvironment = webHostEnvironment;
     }
 
+    
     public async Task<IActionResult> Index()
     {
         var categories = await _dbContext.Categories.ToListAsync();
